@@ -228,6 +228,56 @@ class MathGame extends Midterm {
 		
 	}
 	
+	
+	//added new method
+	public static void openFile(Scanner input) throws IOException {
+
+		String name:
+		
+		// collecting user's name
+		System.out.println("Please enter your name");
+		name = input.nextLine();
+		
+		// validating name
+		name = nameVerification(name);
+		
+		// collecting filename
+		String filename = name + ".txt";
+		
+		// creating file object to read filename
+		File file = new File(filename);
+
+		// this condition needs to be tested
+		if (file.exists() ) {
+			
+			System.out.printf("Welcome back %s., name);
+			System.out.println();
+
+			// creation of Scanner to read from filename					  
+			Scanner readFile = new Scanner(filename);
+			
+			// reading date from filename with Scanner readfile					  
+			this.correct = readFile.nextInt();
+			this.incorrect = readFile.nextInt();
+			this.totalPoints = readFile.nextDouble();
+
+			// closing file		  
+			file.close();
+
+		} else {
+			// creation of a PrintWriter object to write data to filename
+			PrintWriter writeFile = PrintWriter(filename);
+
+			// writing data with PrintWriter writeFile to filename
+			writeFile.printf("Thank you for playing %s.\n", name);
+			writeFile.printf("The number of correct answers: %d\n", correct);
+			writeFile.printf("The number of incorrect answers: %d\n", incorrect);
+			writeFile.printf("The total number of points: %.2f\n", totalPoints);
+
+		}
+
+	} // end of openFile
+	
 	public void increment() {
 		correct++;
 		totalPoints += 0.05;
