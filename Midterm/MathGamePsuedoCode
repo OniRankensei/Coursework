@@ -1,0 +1,74 @@
+import java.util.*
+
+
+public class GameClient {
+
+	public static void main(String[] args) {
+
+		FileWriter fileWriterName = new FileWriter("fileName.txt");
+
+		PrintWriter printWriterName = newPrintWriter(fileWriterName);
+
+		Scanner input = new Scanner(System.in);
+
+		MathGame mathGameName = new MathGame();
+
+		char setCondition;
+
+		getUserName();
+		userName = nameVerification(userName);
+
+
+		do {
+
+			askChoice();
+			getUserChoice();
+
+			userChoice = choiceVerification(userChoice)
+
+			
+
+			switch (userChoice) {
+
+				case 1: mathGameName.add();
+					break;
+
+				case 2: mathGameName.subtract();
+					break;
+
+				case 3: mathGameName.multiply();
+					break;
+
+				case 4: mathGameName.divide();
+					break;
+				
+				case 5: mathGameName.stats();
+					break;
+
+			}
+			
+			printResultsAfterChoice();
+
+			askToContinue();
+			setCondition = toContinue.charAt(0);
+
+		
+		while (setCondition);
+
+		
+		printWriterStats();
+
+		
+
+		input.close();
+		fileWriterName.close();
+		printWrtierName.close();
+
+	
+	} // end of main
+} // end of GameClient
+
+class Game {
+
+	// blueprint for Game class
+}
