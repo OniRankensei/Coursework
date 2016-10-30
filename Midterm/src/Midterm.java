@@ -14,15 +14,12 @@ public class Midterm {
 		
 		char continueGame;
 		
+		mathgame.menu();
+		
 		do {
 			
 			int choice;
 			String userInput;
-			
-			System.out.println("Choose from the following:");
-			System.out.println("1.addition, 2. subtraction");
-			System.out.println("3.multiplication, 4. division");
-			System.out.println("5.stats");
 			
 			userInput = input.nextLine();
 			
@@ -30,23 +27,25 @@ public class Midterm {
 			
 			switch (choice) {
 			
-			case 1: mathgame.sum();
+			case 1: mathgame.addition(input);
 					break;
-			case 2: mathgame.difference();
+			case 2: mathgame.subtraction(input);
 					break;
-			case 3: mathgame.product();
+			case 3: mathgame.product(input);
 					break;
-			case 4: mathgame.quotient();
+			case 4: mathgame.quotient(input);
 					break;
 			case 5: mathgame.stats();		
 			default: 
+				System.out.println("That is not a valid entry, please enter another choice.");
+				
 					break;
 					
 			}
 			
 			/*
 			mathgame.sum();
-			mathgame.difference();
+			mathgame.subtraction();
 			mathgame.product();
 			mathgame.quotient();
 			 */
@@ -67,47 +66,6 @@ public class Midterm {
 		input.close();
 		
 		
-	}
-	
-
-	/**
-	 * 
-	 * 
-	 */
-	public void quotient() {
-		
-		Scanner input = new Scanner(System.in);
-
-		int randomNumber1, randomNumber2, product, quotient;
-		int userInput;
-		boolean correctAnswer;
-
-		// a number 1 through 10 is generated
-		randomNumber1 = 1 + (int) (Math.random() * 10);
-
-		// a second number 1 though 10 is generated
-		randomNumber2 = 1 + (int) (Math.random() * 10);
-
-		product = randomNumber1 * randomNumber2;
-
-		quotient = product / randomNumber1;
-
-		// prompting the user for an answer
-		System.out.printf("What is %d / %d?:\n", product, randomNumber1);
-
-		// collecting user input
-		userInput = input.nextInt();
-
-		// determining whether userInput is correct
-
-		correctAnswer = (quotient == userInput);
-
-		if (!correctAnswer) {
-			System.out.printf("Incorrect answer. %d * %d does not equal to %d.\n\n", product, randomNumber1, userInput);
-		} else {
-			System.out.printf("Correct. %d * %d = %d.\n\n", product, randomNumber1, userInput);
-		}
-
 	}
 	
 	/**
@@ -228,6 +186,26 @@ class MathGame extends Midterm {
 		
 	}
 	
+	public void menu() {
+		
+		// prints out the menu
+		System.out.println("******CHOOSE A PROBLEM******");
+		System.out.println("****************************");
+		System.out.println("******                ******");
+		System.out.println("****** 1. ADD         ******");
+		System.out.println("****** 2. SUBTRACT    ******");
+		System.out.println("****** 3. MULTIPLY    ******");
+		System.out.println("****** 4. DIVIDE      ******");
+		System.out.println("****** 5. STATS       ******");
+		System.out.println("****** n/N to QUIT    ******");
+		System.out.println("******                ******");
+		System.out.println("****************************");
+		System.out.println("****************************");
+		System.out.println("****************************");
+		
+		
+	}
+	
 	public void increment() {
 		correct++;
 		totalPoints += 0.05;
@@ -251,9 +229,26 @@ class MathGame extends Midterm {
 	}
 	
 	public void stats() {
-		System.out.printf("The number of correct answers: %d\n", this.correct);
-		System.out.printf("The number of incorrect answers: %d\n", this.incorrect);
-		System.out.printf("Total earnings: %.2f\n", this.totalPoints);
+		// DO NOT REMOVE THE LINE WITH TOTAL EARNINGS $0.08
+		// THIS LINE IS AN EXAMPLE OF THE LENGTH IT SHOULD BE
+		// there are 22 characters in the empty space
+		System.out.println("**********************************");
+		System.out.println("**********************************");
+		System.out.println("**********************************");
+		System.out.println("******                      ******");
+		System.out.printf("******%-22s******\n", this.userName);
+		System.out.printf("******Total Earnings $%.2f  ******\n", this.totalPoints);
+		System.out.printf("******Total Correct  %2d     ******\n", this.correct);
+		System.out.printf("******Total Incorrect %2d    ******\n", this.incorrect);
+		System.out.printf("******Total Earnings $0.08  ******\n");
+		System.out.println("******                      ******");
+		System.out.println("**********************************");
+		System.out.println("**********************************");
+		System.out.println("**********************************");
+		
+		
+		System
+		
 	}
 	
 	/**
@@ -265,7 +260,7 @@ class MathGame extends Midterm {
 	 * If the user's answer is incorrect, the instance variable <b>incorrect</b> increases.
 	 */
 
-	public void sum() {
+	public void addition(Scanner input) {
 		boolean correct;
 		int sum;
 		int answer;
@@ -276,9 +271,16 @@ class MathGame extends Midterm {
 		int randomNumberOne = (int) (Math.random() * 10);
 		int randomNumberTwo = (int) (Math.random() * 10);
 
-		System.out.printf("What is %d + %d?\n", randomNumberOne, randomNumberTwo);
+		// addition problem displayed to console 
+		System.out.println("*****ADDITION*****");
+		System.out.println("******************");
+		System.out.printf ("*****%d + %d = ?****\n", randomNumberOne, randomNumberTwo);
+		System.out.println("******************");
+		System.out.println("******************");
 		
-		userInput = keyboardInput.nextLine();
+		
+		
+		userInput = input.nextLine();
 		
 		answer = numberValidation(userInput);
 		
@@ -288,15 +290,19 @@ class MathGame extends Midterm {
 
 		if (!correct) {
 
-			System.out.printf("That is incorrect! %d + %d does not equal %d.\n", randomNumberOne, randomNumberTwo,
-					answer);
-			
-			// increase the number of incorrect
 			decrement();
 
-		} else {
+			System.out.println("***********WRONG!***********");
+			System.out.println();
 
-			System.out.printf("Correct! %d + %d = %d.\n", randomNumberOne, randomNumberTwo, answer);
+			menu();
+
+		} else {
+			
+			System.out.println("***********RIGHT!***********");
+			System.out.println();
+
+			menu();
 			
 			// increase the number of correct
 			increment();
@@ -309,87 +315,6 @@ class MathGame extends Midterm {
 	} // end of sum()
 	
 	/**
-	 * Prompts the user to answer the difference between two randomly generated
-	 * integers ranging from 1 to 10.
-	 * 
-	 * @return
-	 * true if the user answers correctly; false if the user answers incorrectly.
-	 */
-	public void difference() {
-		boolean correct;
-		String userInput;
-		int difference;
-		int answer;
-
-		Scanner keyboardInput = new Scanner(System.in);
-
-		int randomNumberOne = (int) (Math.random() * 10);
-		int randomNumberTwo = (int) (Math.random() * 10);
-
-		if (randomNumberOne >= randomNumberTwo) {
-
-			difference = randomNumberOne - randomNumberTwo;
-
-			System.out.printf("What is %d - %d?\n", randomNumberOne, randomNumberTwo);
-
-			userInput = keyboardInput.nextLine();
-			
-			answer = numberValidation(userInput);
-
-			correct = (answer == difference);
-
-			if (!correct) {
-
-				System.out.printf("Incorrect! %d - %d does not equal %d.\n", randomNumberOne, randomNumberTwo,
-						answer);
-
-				System.out.println();
-
-				decrement();
-
-			} else {
-
-				System.out.printf("Correct! %d - %d = %d.\n", randomNumberOne, randomNumberTwo, answer);
-				System.out.println();
-				
-				increment();
-			}
-
-		} else {
-
-			difference = randomNumberTwo - randomNumberOne;
-
-			System.out.printf("What is %d - %d?\n", randomNumberTwo, randomNumberOne);
-
-			userInput = keyboardInput.nextLine();
-			
-			answer = numberValidation(userInput);
-
-			correct = (answer == difference);
-
-			if (!correct) {
-
-				System.out.printf("Incorrect! %d - %d does not equal %d.\n", randomNumberTwo, randomNumberOne,
-						answer);
-				
-				System.out.println();
-				
-				decrement();
-
-			} else {
-				System.out.printf("Correct! %d - %d = %d.\n", randomNumberTwo, randomNumberOne, answer);
-				System.out.println();
-				
-				increment();
-				
-			}
-
-		}
-		
-
-	} // end of difference
-	
-	/**
 	 * Prompts the user to answer the product between two randomly generated
 	 * integers ranging from 1 to 10.
 	 * 
@@ -397,10 +322,9 @@ class MathGame extends Midterm {
 	 * true if the user answers correctly; false if the user answers incorrectly.
 	 */
 
-	public void product() {
-		Scanner input = new Scanner(System.in);
+	public void product(Scanner input) {
 
-		int randomNumber1, randomNumber2, product;
+		int randomNumber1, randomNumber2, product, userAnswer;
 		String userInput;
 		boolean correct;
 
@@ -414,35 +338,46 @@ class MathGame extends Midterm {
 		product = randomNumber1 * randomNumber2;
 
 		// prompting the user for an answer
-		System.out.printf("What is %d * %d?:\n", randomNumber1, randomNumber2);
+				System.out.println("***MULTIPLICATION***");
+				System.out.println("********************");
+				System.out.printf("*****%d X %d = ?******\n", randomNumber1, randomNumber2);
+				System.out.println("********************");
+				System.out.println("********************");
 
 		// collecting user input
 		userInput = input.nextLine();
 		
-		int answer = numberValidation(userInput);
+		userAnswer = numberValidation(userInput);
 
 		// determining whether userInput is correct
 
-		correct = (product == answer);
+		correct = (product == userAnswer);
 
 		if (!correct) {
-			System.out.printf("Incorrect answer. %d * %d does not equal to %d.\n\n", randomNumber1, randomNumber2,
-					answer);
+			
 			decrement();
+
+			System.out.println("***********WRONG!***********");
+			System.out.println();
+
+			menu();
 			
 		} else {
-			System.out.printf("Correct. %d * %d = %d.\n\n", randomNumber1, randomNumber2, answer);
+			System.out.println("***********RIGHT!***********");
+			System.out.println();
+
+			menu(); 
+			
 			increment();
 		}
 
 	}
 	
 
-	public void quotient() {
+	public void quotient(Scanner input) {
 		
-		Scanner input = new Scanner(System.in);
 
-		int randomNumber1, randomNumber2, product, quotient;
+		int randomNumber1, randomNumber2, product, quotient, userAnswer;
 		String userInput;
 		boolean correct;
 
@@ -457,27 +392,122 @@ class MathGame extends Midterm {
 		quotient = product / randomNumber1;
 
 		// prompting the user for an answer
-		System.out.printf("What is %d / %d?:\n", product, randomNumber1);
+		System.out.println("******DIVISION******");
+		System.out.println("********************");
+		System.out.printf("*****%d / %d = ?*****\n", product, randomNumber1);
+		System.out.println("********************");
+		System.out.println("********************");
 
 		// collecting user input
 		userInput = input.nextLine();
 		
-		int answer = numberValidation(userInput);
+		userAnswer = numberValidation(userInput);
 
 		// determining whether userInput is correct
 
-		correct = (quotient == answer);
+		correct = (quotient == userAnswer);
 
 		if (!correct) {
-			System.out.printf("Incorrect answer. %d * %d does not equal to %d.\n\n",
-					product, randomNumber1, answer);
+			
 			decrement();
+
+			System.out.println("***********WRONG!***********");
+			System.out.println();
+
+			menu();
+			
 		} else {
-			System.out.printf("Correct. %d * %d = %d.\n\n", product, randomNumber1, answer);
 			increment();
+			
+			System.out.println("***********RIGHT!***********");
+			System.out.println();
+
+			menu();
 		}
 
 	} // end of quotient
+	
+	/**
+	 * Generates a subtraction math problem between two randomly generated integers whose
+	 * difference is greater than or equal to 0. The user is prompted to answer the 
+	 * question by entering a number as a String. The user input is validated to
+	 * ensure that the input consists of only numbers greater than or equal 0 zero. In 
+	 * addition, the input is validated to ensure that an empty String or special characters
+	 * are not entered.
+	 * <br></br>
+	 * If the user answers the problem correctly, the number of correct answers is increased by
+	 * one and the total number of points is increased by 0.05. If the user answers the problem
+	 * incorrectly, the number of incorrect answers is increased by one and the total number of
+	 * points is decreased by 0.03.
+	 * 
+	 * @param input
+	 * a Scanner object used to read user input from the console.
+	 */
+	public void subtraction(Scanner input) {
+		
+		boolean correct;
+		String userInput;
+		int subtractionAnswer, userAnswer;
+		int randomNumber1, randomNumber2;
+		int temporaryVariable;
+
+		// generating random numbers
+		randomNumber1 = 1 + (int) (Math.random() * 10);
+		randomNumber2 = 1 + (int) (Math.random() * 10);
+
+
+		// making randomNumber1 be greater to avoid a negative answer
+		if (randomNumber2 > randomNumber1) {
+
+			temporaryVariable = randomNumber1;
+
+			randomNumber1 = randomNumber2;
+			randomNumber2 = temporaryVariable;
+		}
+
+			// the answer of the problem is stored in subtraction
+			subtractionAnswer = randomNumber1 - randomNumber2;
+
+			// subtraction problem displayed to console 
+			System.out.println("****SUBTRACTION****");
+			System.out.println("*******************");
+			System.out.printf ("*****%d - %d = ?*****\n", randomNumber1, randomNumber2);
+			System.out.println("*******************");
+			System.out.println("*******************");
+
+			subtractionAnswer = randomNumber1 - randomNumber2;
+
+			// collecting user input
+			userInput = input.nextLine();
+
+			// validating user input and storing in userAnswer
+			userAnswer = numberValidation(userInput);
+
+			// checking whether the answer is correct
+			correct = (subtractionAnswer == userAnswer);
+
+			if ( !correct ) {
+
+				decrement();
+
+				System.out.println("***********WRONG!***********");
+				System.out.println();
+
+				menu();
+			} else {
+				
+				increment();
+				
+				System.out.println("***********RIGHT!***********");
+				System.out.println();
+
+				menu();
+				
+			}
+
+
+
+	}
 	
 	/**
 	 * Prints out the instance variables to the console and to a file.
