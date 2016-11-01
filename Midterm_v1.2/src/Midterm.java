@@ -30,7 +30,6 @@ public class Midterm {
 			// will perform the choices express in displayMenu
 			mathgame.game(input);
 		}
-		mathgame.saveStats();
 		
 		
 	} // end of main
@@ -282,8 +281,10 @@ public void welcome() {
 					break;
 			case 'n':
 					quit();
+					saveStats();
 			case 'N':	
 					quit();
+					saveStats()
 			}
 			
 		} while(this.on);
@@ -653,12 +654,17 @@ public void welcome() {
 		
 		if (file.exists()) {
 			
+			// added a try-catch to catch a NoSuchElementException
+			// if the file does not have an int or a Double to read
+			
+			try {
 			// Scanner object to read from file
 			Scanner readFile = new Scanner(file);
 			
 			correct = readFile.nextInt();
 			incorrect = readFile.nextInt();
 			totalPoints = readFile.nextDouble();
+			} catch (NoSuchElementException e)
 			
 			readFile.close();
 		
